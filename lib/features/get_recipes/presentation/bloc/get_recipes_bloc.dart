@@ -33,7 +33,7 @@ class GetRecipesBloc extends Bloc<GetRecipesBlocEvent, GetRecipesBlocState> {
   ) async* {
     yield failureOrTrivia.fold(
       (failure) => Error(message: _mapFailureToMessage(failure)),
-      (recipesInformation) => Loaded(recipesInformation: recipesInformation),
+      (recipesInformationList) => Loaded(recipesInformationList: recipesInformationList),
     );
   }
 

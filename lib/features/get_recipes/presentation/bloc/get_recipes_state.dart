@@ -14,12 +14,12 @@ class Initial extends GetRecipesBlocState {}
 class Loading extends GetRecipesBlocState {}
 
 class Loaded extends GetRecipesBlocState {
-  final RecipesInformation recipesInformation;
+  final List<RecipesInformation> recipesInformationList;
 
-  Loaded({required this.recipesInformation});
+  Loaded({required this.recipesInformationList});
 
   @override
-  List<Object> get props => [recipesInformation];
+  List<Object> get props => [recipesInformationList];
 }
 
 class Error extends GetRecipesBlocState {
