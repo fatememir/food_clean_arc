@@ -4,10 +4,10 @@ import '../../../../core/usecase/usecase.dart';
 import '../entities/recipes_information.dart';
 import '../repositories/get_recipes_repository.dart';
 
-class GetConcreteNumberTrivia implements UseCase<RecipesInformation, NoParams> {
+class GetRecipesInformation implements UseCase<RecipesInformation, NoParams> {
   final GetRecipesRepository repository;
 
-  GetConcreteNumberTrivia(this.repository);
+  GetRecipesInformation(this.repository);
 
   @override
   Future<Either<Failure, RecipesInformation>> call(NoParams params) async {
