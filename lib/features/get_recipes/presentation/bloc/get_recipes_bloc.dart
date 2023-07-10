@@ -3,6 +3,7 @@ import 'package:bloc/bloc.dart';
 import 'package:dartz/dartz.dart';
 
 import '../../../../core/error/failures.dart';
+import '../../../../core/usecase/usecase.dart';
 import '../../domain/entities/recipes_information.dart';
 import '../../domain/usecases/get_recipes.dart';
 import './bloc.dart';
@@ -22,7 +23,7 @@ class GetRecipesBloc extends Bloc<GetRecipesBlocEvent, GetRecipesBlocState> {
   ) async* {
     if (event is GetRecipes) {
       yield Loading();
-      final failureOrSuccess = await getRecipesInformation();
+      final failureOrSuccess = await getRecipesInformation(NoParams());
       yield* _eitherLoadedOrErrorState(failureOrSuccess);
     }
   }
