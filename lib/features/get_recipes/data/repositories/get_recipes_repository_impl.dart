@@ -2,7 +2,7 @@ import 'package:dartz/dartz.dart';
 import 'package:food_clean_arc/core/error/exception.dart';
 import 'package:food_clean_arc/features/get_recipes/domain/entities/recipes_information.dart';
 import '../../../../core/error/failures.dart';
-import '../../../../core/platform/network_info.dart';
+import '../../../../core/network/network_info.dart';
 import '../../domain/repositories/get_recipes_repository.dart';
 import '../datasources/get_recipes_remote_datasource.dart';
 
