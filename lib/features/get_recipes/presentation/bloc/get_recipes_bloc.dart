@@ -1,39 +1,53 @@
 import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:dartz/dartz.dart';
+import 'package:injectable/injectable.dart';
 
 import '../../../../core/error/failures.dart';
 import '../../../../core/usecase/usecase.dart';
 import '../../domain/entities/recipes_information.dart';
 import '../../domain/usecases/get_recipes.dart';
-import './bloc.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+
+
+
+part 'get_recipes_event.dart';
+
+part 'get_recipes_state.dart';
+
+part 'get_recipes_bloc.freezed.dart';
 
 const String SERVER_FAILURE_MESSAGE = 'Server Failure';
 const String CACHE_FAILURE_MESSAGE = 'Cache Failure';
-
+@injectable
 class GetRecipesBloc extends Bloc<GetRecipesBlocEvent, GetRecipesBlocState> {
   final GetRecipesInformation getRecipesInformation;
 
   GetRecipesBloc({
     required this.getRecipesInformation,
-  }) : super(Initial());
-
-  Stream<GetRecipesBlocState> mapEventToState(
-    GetRecipesBlocEvent event,
-  ) async* {
-    if (event is GetRecipes) {
-      yield Loading();
-      final failureOrSuccess = await getRecipesInformation(NoParams());
-      yield* _eitherLoadedOrErrorState(failureOrSuccess);
-    }
+  }) : super(const GetRecipesBlocState.initial()) {
+    on<_GetRecipes>(getRecipes);
   }
 
+  Future<void> getRecipes(
+      _GetRecipes event,
+      Emitter<GetRecipesBlocState> emit,
+      ) async {
+    emit(
+      const GetRecipesBlocState.loading(),
+    );
+    final failureOrSuccess = await getRecipesInformation(NoParams());
+    _eitherLoadedOrErrorState(failureOrSuccess);
+  }
+
+
+
   Stream<GetRecipesBlocState> _eitherLoadedOrErrorState(
-    Either<Failure, RecipesInformation> failureOrTrivia,
+    Either<Failure, List<RecipesInformation>> failureOrTrivia,
   ) async* {
     yield failureOrTrivia.fold(
-      (failure) => Error(message: _mapFailureToMessage(failure)),
-      (recipesInformationList) => Loaded(recipesInformationList: recipesInformationList),
+      (failure) => GetRecipesBlocState.error( _mapFailureToMessage(failure)),
+      (recipesInformationList) => GetRecipesBlocState.loaded(recipesInformationList),
     );
   }
 

@@ -1,32 +1,15 @@
-import 'package:equatable/equatable.dart';
-import 'package:meta/meta.dart';
 
-import '../../domain/entities/recipes_information.dart';
 
-@immutable
-abstract class GetRecipesBlocState extends Equatable {
-  @override
-  List<Object> get props => [];
-}
+part of 'get_recipes_bloc.dart';
 
-class Initial extends GetRecipesBlocState {}
 
-class Loading extends GetRecipesBlocState {}
+@freezed
+class GetRecipesBlocState with _$GetRecipesBlocState {
+  const factory GetRecipesBlocState.initial() = _Initial;
 
-class Loaded extends GetRecipesBlocState {
-  final List<RecipesInformation> recipesInformationList;
+  const factory GetRecipesBlocState.loading() = _Loading;
 
-  Loaded({required this.recipesInformationList});
+  const factory GetRecipesBlocState.loaded(List<RecipesInformation> recipesInformationList) = _Loaded;
 
-  @override
-  List<Object> get props => [recipesInformationList];
-}
-
-class Error extends GetRecipesBlocState {
-  final String message;
-
-  Error({required this.message});
-
-  @override
-  List<Object> get props => [message];
+  const factory GetRecipesBlocState.error(String message) = _Error;
 }

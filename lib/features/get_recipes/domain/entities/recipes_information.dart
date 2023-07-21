@@ -1,25 +1,13 @@
-import 'package:equatable/equatable.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 
-class RecipesInformation extends Equatable {
-  final int id;
+part 'recipes_information.freezed.dart';
 
-  final int readyInMinutes;
-
-  final String title;
-
-  final String image;
-
-  const RecipesInformation(
-      {required this.id,
-      required this.title,
-      required this.image,
-      required this.readyInMinutes})
-      : super();
-
-  //we used props for handling State changes.
-  //props declared when we want State to be compared against the values which declared inside props List
-  //it will be able to compare different instances of RecipesInformation
-
-  @override
-  List<Object?> get props => [id, title, image, readyInMinutes];
+@freezed
+class RecipesInformation with _$RecipesInformation {
+  const factory RecipesInformation({
+    required int id,
+    required String title,
+    required String image,
+    required int readyInMinutes
+  }) = _RecipesInformation;
 }

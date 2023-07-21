@@ -1,15 +1,6 @@
-import 'package:equatable/equatable.dart';
-import 'package:meta/meta.dart';
+part of 'get_recipes_bloc.dart';
 
-@immutable
-abstract class GetRecipesBlocEvent extends Equatable {
-  @override
-  List<Object> get props => [];
+@freezed
+class GetRecipesBlocEvent with _$GetRecipesBlocEvent {
+  const factory GetRecipesBlocEvent.getRecipes() = _GetRecipes;
 }
-
-class GetRecipes extends GetRecipesBlocEvent {
-
-  @override
-  List<Object> get props => [];
-}
-
