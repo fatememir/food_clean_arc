@@ -6,8 +6,19 @@ import '../widgets/loading_widget.dart';
 import '../widgets/message_display.dart';
 import '../widgets/recipes_list_display.dart';
 
-class RecipesPage extends StatelessWidget {
-  const RecipesPage({super.key});
+class RecipesPage extends StatefulWidget {
+  @override
+  State<RecipesPage> createState() => _RecipesPageState();
+}
+
+class _RecipesPageState extends State<RecipesPage> {
+  @override
+  void initState() {
+    context.read<GetRecipesBloc>().add(
+          const GetRecipesBlocEvent.getRecipes(),
+        );
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -15,29 +26,26 @@ class RecipesPage extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Recipes'),
       ),
-      body:
-         buildBody(context),
-
+      body: buildBody(context),
     );
   }
 
   Widget buildBody(BuildContext context) {
-    return  BlocBuilder<GetRecipesBloc, GetRecipesBlocState>(
-        builder: (context, state) {
-          return state.when(
-              initial: () => const MessageDisplay(
-                message: 'Welcome!',
-              ),
-              loading: () => const LoadingWidget(),
-              loaded: (recipesList) => RecipesListDisplay(
-                  recipesInformationList: recipesList), error: (String message) {
-                return  MessageDisplay(
-                  message: message,
-                );
-          } );
-        },
+    return BlocBuilder<GetRecipesBloc, GetRecipesBlocState>(
+      builder: (context, state) {
+        return state.when(
+            initial: () => const MessageDisplay(
+                  message: 'Welcome!',
+                ),
+            loading: () => const LoadingWidget(),
+            loaded: (recipesList) =>
+                RecipesListDisplay(recipesInformationList: recipesList),
+            error: (String message) {
+              return MessageDisplay(
+                message: message,
+              );
+            });
+      },
     );
-
   }
 }
-

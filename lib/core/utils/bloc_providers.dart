@@ -1,4 +1,3 @@
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../features/get_recipes/domain/usecases/get_recipes.dart';
@@ -12,10 +11,9 @@ Widget _buildBlocProviders({
 }) {
   return MultiBlocProvider(
     providers: [
-
       BlocProvider<GetRecipesBloc>(
         create: (_) => getIt(),
-        child: const RecipesPage(),
+        child: RecipesPage(),
       ),
       //
       // BlocProvider(

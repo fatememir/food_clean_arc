@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:injectable/injectable.dart';
 import 'core/injection/injection.dart';
 import 'features/get_recipes/presentation/bloc/get_recipes_bloc.dart';
 import 'features/get_recipes/presentation/pages/recipes_page.dart';
 
-void main() async{
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await configureInjection(Environment.prod);
-  runApp( const MyApp());
+  configureDependencies();
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -29,7 +28,6 @@ class MyApp extends StatelessWidget {
     //   ),
     //   // home: const RecipesPage(),
     // ));
-
   }
 
   Widget _buildBlocProviders({
@@ -37,10 +35,9 @@ class MyApp extends StatelessWidget {
   }) {
     return MultiBlocProvider(
       providers: [
-
         BlocProvider<GetRecipesBloc>(
           create: (_) => getIt(),
-          child: const RecipesPage(),
+          child: RecipesPage(),
         ),
         //
         // BlocProvider(

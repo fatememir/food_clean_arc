@@ -1,6 +1,5 @@
 import 'dart:async';
 import 'package:bloc/bloc.dart';
-import 'package:dartz/dartz.dart';
 import 'package:injectable/injectable.dart';
 
 import '../../../../core/error/failures.dart';
@@ -8,8 +7,6 @@ import '../../../../core/usecase/usecase.dart';
 import '../../domain/entities/recipes_information.dart';
 import '../../domain/usecases/get_recipes.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-
-
 
 part 'get_recipes_event.dart';
 
@@ -19,6 +16,7 @@ part 'get_recipes_bloc.freezed.dart';
 
 const String SERVER_FAILURE_MESSAGE = 'Server Failure';
 const String CACHE_FAILURE_MESSAGE = 'Cache Failure';
+
 @injectable
 class GetRecipesBloc extends Bloc<GetRecipesBlocEvent, GetRecipesBlocState> {
   final GetRecipesInformation getRecipesInformation;
@@ -30,26 +28,19 @@ class GetRecipesBloc extends Bloc<GetRecipesBlocEvent, GetRecipesBlocState> {
   }
 
   Future<void> getRecipes(
-      _GetRecipes event,
-      Emitter<GetRecipesBlocState> emit,
-      ) async {
+    _GetRecipes event,
+    Emitter<GetRecipesBlocState> emit,
+  ) async {
     emit(
       const GetRecipesBlocState.loading(),
     );
     final failureOrSuccess = await getRecipesInformation(NoParams());
-    _eitherLoadedOrErrorState(failureOrSuccess);
+    failureOrSuccess.fold(
+        (l) => emit(GetRecipesBlocState.error(_mapFailureToMessage(l))),
+        (r) => emit(GetRecipesBlocState.loaded(r)));
   }
 
 
-
-  Stream<GetRecipesBlocState> _eitherLoadedOrErrorState(
-    Either<Failure, List<RecipesInformation>> failureOrTrivia,
-  ) async* {
-    yield failureOrTrivia.fold(
-      (failure) => GetRecipesBlocState.error( _mapFailureToMessage(failure)),
-      (recipesInformationList) => GetRecipesBlocState.loaded(recipesInformationList),
-    );
-  }
 
   String _mapFailureToMessage(Failure failure) {
     switch (failure.runtimeType) {
