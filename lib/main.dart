@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'core/injection/injection.dart';
 import 'core/utils/bloc_providers.dart';
-import 'features/get_recipes/presentation/pages/recipes_page.dart';
+import 'core/rout/routing.dart';
+
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -15,10 +16,10 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BuildBlocProviders(
-        child: MaterialApp(
+        child: MaterialApp.router(
       title: "Food",
       themeMode: ThemeMode.system,
-      home: RecipesPage(),
+          routerConfig: router,
     ));
   }
 }
