@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:food_clean_arc/features/get_recipes/presentation/widgets/ready_minute_widget.dart';
 import 'package:food_clean_arc/features/get_recipes/presentation/widgets/watch_button_widget.dart';
+import 'package:go_router/go_router.dart';
+import '../../../../core/utils/recipes_detail_screen_model.dart';
 import '../../domain/entities/recipes_information.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 
@@ -25,7 +27,12 @@ class RecipesListDisplay extends StatelessWidget {
           shrinkWrap: true,
           itemBuilder: (BuildContext context, int index) {
             return InkWell(
-              onTap: () {},
+              onTap: () {
+                context.go('/recipesDetail',
+                    extra: RecipesDetailScreenModel(
+                        recipesInformation: recipesInformationList[index],
+                        index: index));
+              },
               child: Container(
                 decoration: BoxDecoration(
                     color: Colors.white,
@@ -59,7 +66,7 @@ class RecipesListDisplay extends StatelessWidget {
 
   Widget _buildFoodImage(int index) {
     return Hero(
-      tag: "foodImage",
+      tag: "FoodImage$index",
       child: CachedNetworkImage(
         imageBuilder: (context, imageProvider) => Container(
           height: MediaQuery.of(context).size.height / 8,
