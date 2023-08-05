@@ -22,6 +22,7 @@ GetRecipesModel _$GetRecipesModelFromJson(Map<String, dynamic> json) {
 mixin _$GetRecipesModel {
   String get title => throw _privateConstructorUsedError;
   String get image => throw _privateConstructorUsedError;
+  String get summary => throw _privateConstructorUsedError;
   int get id => throw _privateConstructorUsedError;
   int get readyInMinutes => throw _privateConstructorUsedError;
 
@@ -37,7 +38,8 @@ abstract class $GetRecipesModelCopyWith<$Res> {
           GetRecipesModel value, $Res Function(GetRecipesModel) then) =
       _$GetRecipesModelCopyWithImpl<$Res, GetRecipesModel>;
   @useResult
-  $Res call({String title, String image, int id, int readyInMinutes});
+  $Res call(
+      {String title, String image, String summary, int id, int readyInMinutes});
 }
 
 /// @nodoc
@@ -55,6 +57,7 @@ class _$GetRecipesModelCopyWithImpl<$Res, $Val extends GetRecipesModel>
   $Res call({
     Object? title = null,
     Object? image = null,
+    Object? summary = null,
     Object? id = null,
     Object? readyInMinutes = null,
   }) {
@@ -66,6 +69,10 @@ class _$GetRecipesModelCopyWithImpl<$Res, $Val extends GetRecipesModel>
       image: null == image
           ? _value.image
           : image // ignore: cast_nullable_to_non_nullable
+              as String,
+      summary: null == summary
+          ? _value.summary
+          : summary // ignore: cast_nullable_to_non_nullable
               as String,
       id: null == id
           ? _value.id
@@ -87,7 +94,8 @@ abstract class _$$_GetRecipesModelCopyWith<$Res>
       __$$_GetRecipesModelCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String title, String image, int id, int readyInMinutes});
+  $Res call(
+      {String title, String image, String summary, int id, int readyInMinutes});
 }
 
 /// @nodoc
@@ -103,6 +111,7 @@ class __$$_GetRecipesModelCopyWithImpl<$Res>
   $Res call({
     Object? title = null,
     Object? image = null,
+    Object? summary = null,
     Object? id = null,
     Object? readyInMinutes = null,
   }) {
@@ -114,6 +123,10 @@ class __$$_GetRecipesModelCopyWithImpl<$Res>
       image: null == image
           ? _value.image
           : image // ignore: cast_nullable_to_non_nullable
+              as String,
+      summary: null == summary
+          ? _value.summary
+          : summary // ignore: cast_nullable_to_non_nullable
               as String,
       id: null == id
           ? _value.id
@@ -133,6 +146,7 @@ class _$_GetRecipesModel implements _GetRecipesModel {
   const _$_GetRecipesModel(
       {required this.title,
       required this.image,
+      required this.summary,
       required this.id,
       required this.readyInMinutes});
 
@@ -144,13 +158,15 @@ class _$_GetRecipesModel implements _GetRecipesModel {
   @override
   final String image;
   @override
+  final String summary;
+  @override
   final int id;
   @override
   final int readyInMinutes;
 
   @override
   String toString() {
-    return 'GetRecipesModel(title: $title, image: $image, id: $id, readyInMinutes: $readyInMinutes)';
+    return 'GetRecipesModel(title: $title, image: $image, summary: $summary, id: $id, readyInMinutes: $readyInMinutes)';
   }
 
   @override
@@ -160,6 +176,7 @@ class _$_GetRecipesModel implements _GetRecipesModel {
             other is _$_GetRecipesModel &&
             (identical(other.title, title) || other.title == title) &&
             (identical(other.image, image) || other.image == image) &&
+            (identical(other.summary, summary) || other.summary == summary) &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.readyInMinutes, readyInMinutes) ||
                 other.readyInMinutes == readyInMinutes));
@@ -168,7 +185,7 @@ class _$_GetRecipesModel implements _GetRecipesModel {
   @JsonKey(ignore: true)
   @override
   int get hashCode =>
-      Object.hash(runtimeType, title, image, id, readyInMinutes);
+      Object.hash(runtimeType, title, image, summary, id, readyInMinutes);
 
   @JsonKey(ignore: true)
   @override
@@ -188,6 +205,7 @@ abstract class _GetRecipesModel implements GetRecipesModel {
   const factory _GetRecipesModel(
       {required final String title,
       required final String image,
+      required final String summary,
       required final int id,
       required final int readyInMinutes}) = _$_GetRecipesModel;
 
@@ -198,6 +216,8 @@ abstract class _GetRecipesModel implements GetRecipesModel {
   String get title;
   @override
   String get image;
+  @override
+  String get summary;
   @override
   int get id;
   @override

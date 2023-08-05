@@ -11,7 +11,7 @@ class WatchButtonWidget extends StatelessWidget {
       child: const Padding(
         padding: EdgeInsets.only(top: 4, bottom: 4, right: 8, left: 8),
         child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Icon(Icons.play_circle_fill_sharp, color: Colors.white, size: 18),
             Text(

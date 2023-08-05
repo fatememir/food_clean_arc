@@ -3,7 +3,6 @@ import 'core/injection/injection.dart';
 import 'core/utils/bloc_providers.dart';
 import 'core/rout/routing.dart';
 
-
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   configureDependencies();
@@ -18,8 +17,9 @@ class MyApp extends StatelessWidget {
     return BuildBlocProviders(
         child: MaterialApp.router(
       title: "Food",
+      debugShowCheckedModeBanner: false,
       themeMode: ThemeMode.system,
-          routerConfig: router,
+      routerConfig: router,
     ));
   }
 }

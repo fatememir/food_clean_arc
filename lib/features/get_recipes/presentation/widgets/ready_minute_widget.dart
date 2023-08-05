@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 
 class ReadyMinute extends StatelessWidget {
-  const ReadyMinute({super.key});
+  final int readyMinutes;
+  const ReadyMinute({super.key ,required this.readyMinutes});
 
   @override
   Widget build(BuildContext context) {
@@ -9,17 +10,17 @@ class ReadyMinute extends StatelessWidget {
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(32),
           color: Colors.white),
-      child: const Padding(
-        padding: EdgeInsets.only(
+      child:  Padding(
+        padding: const EdgeInsets.only(
             top: 4, bottom: 4, right: 8, left: 8),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Icon(Icons.access_time_outlined,
+            const Icon(Icons.access_time_outlined,
                 color: Colors.grey, size: 18),
             Text(
-              "15 min",
-              style: TextStyle(
+              "$readyMinutes min",
+              style: const TextStyle(
                   color: Colors.grey, fontSize: 12),
             )
           ],

@@ -8,6 +8,7 @@ class RecipesInformation with _$RecipesInformation {
     required int id,
     required String title,
     required String image,
-    required int readyInMinutes
+    required String summary,
+    required int readyInMinutes,
   }) = _RecipesInformation;
 }

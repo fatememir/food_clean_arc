@@ -26,7 +26,8 @@ class GetRecipesRepositoryImpl implements GetRecipesRepository {
       try {
         final remoteRecipes = await remoteDataSource.getRecipes();
         //save data in DB here
-        final entities = remoteRecipes.map<RecipesInformation>((e) => e.toEntity()).toList();
+        final entities =
+            remoteRecipes.map<RecipesInformation>((e) => e.toEntity()).toList();
         return Right(entities);
       } on ServerException {
         return Left(ServerFailure());

@@ -19,6 +19,7 @@ mixin _$RecipesInformation {
   int get id => throw _privateConstructorUsedError;
   String get title => throw _privateConstructorUsedError;
   String get image => throw _privateConstructorUsedError;
+  String get summary => throw _privateConstructorUsedError;
   int get readyInMinutes => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -32,7 +33,8 @@ abstract class $RecipesInformationCopyWith<$Res> {
           RecipesInformation value, $Res Function(RecipesInformation) then) =
       _$RecipesInformationCopyWithImpl<$Res, RecipesInformation>;
   @useResult
-  $Res call({int id, String title, String image, int readyInMinutes});
+  $Res call(
+      {int id, String title, String image, String summary, int readyInMinutes});
 }
 
 /// @nodoc
@@ -51,6 +53,7 @@ class _$RecipesInformationCopyWithImpl<$Res, $Val extends RecipesInformation>
     Object? id = null,
     Object? title = null,
     Object? image = null,
+    Object? summary = null,
     Object? readyInMinutes = null,
   }) {
     return _then(_value.copyWith(
@@ -65,6 +68,10 @@ class _$RecipesInformationCopyWithImpl<$Res, $Val extends RecipesInformation>
       image: null == image
           ? _value.image
           : image // ignore: cast_nullable_to_non_nullable
+              as String,
+      summary: null == summary
+          ? _value.summary
+          : summary // ignore: cast_nullable_to_non_nullable
               as String,
       readyInMinutes: null == readyInMinutes
           ? _value.readyInMinutes
@@ -82,7 +89,8 @@ abstract class _$$_RecipesInformationCopyWith<$Res>
       __$$_RecipesInformationCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int id, String title, String image, int readyInMinutes});
+  $Res call(
+      {int id, String title, String image, String summary, int readyInMinutes});
 }
 
 /// @nodoc
@@ -99,6 +107,7 @@ class __$$_RecipesInformationCopyWithImpl<$Res>
     Object? id = null,
     Object? title = null,
     Object? image = null,
+    Object? summary = null,
     Object? readyInMinutes = null,
   }) {
     return _then(_$_RecipesInformation(
@@ -113,6 +122,10 @@ class __$$_RecipesInformationCopyWithImpl<$Res>
       image: null == image
           ? _value.image
           : image // ignore: cast_nullable_to_non_nullable
+              as String,
+      summary: null == summary
+          ? _value.summary
+          : summary // ignore: cast_nullable_to_non_nullable
               as String,
       readyInMinutes: null == readyInMinutes
           ? _value.readyInMinutes
@@ -129,6 +142,7 @@ class _$_RecipesInformation implements _RecipesInformation {
       {required this.id,
       required this.title,
       required this.image,
+      required this.summary,
       required this.readyInMinutes});
 
   @override
@@ -138,11 +152,13 @@ class _$_RecipesInformation implements _RecipesInformation {
   @override
   final String image;
   @override
+  final String summary;
+  @override
   final int readyInMinutes;
 
   @override
   String toString() {
-    return 'RecipesInformation(id: $id, title: $title, image: $image, readyInMinutes: $readyInMinutes)';
+    return 'RecipesInformation(id: $id, title: $title, image: $image, summary: $summary, readyInMinutes: $readyInMinutes)';
   }
 
   @override
@@ -153,13 +169,14 @@ class _$_RecipesInformation implements _RecipesInformation {
             (identical(other.id, id) || other.id == id) &&
             (identical(other.title, title) || other.title == title) &&
             (identical(other.image, image) || other.image == image) &&
+            (identical(other.summary, summary) || other.summary == summary) &&
             (identical(other.readyInMinutes, readyInMinutes) ||
                 other.readyInMinutes == readyInMinutes));
   }
 
   @override
   int get hashCode =>
-      Object.hash(runtimeType, id, title, image, readyInMinutes);
+      Object.hash(runtimeType, id, title, image, summary, readyInMinutes);
 
   @JsonKey(ignore: true)
   @override
@@ -174,6 +191,7 @@ abstract class _RecipesInformation implements RecipesInformation {
       {required final int id,
       required final String title,
       required final String image,
+      required final String summary,
       required final int readyInMinutes}) = _$_RecipesInformation;
 
   @override
@@ -182,6 +200,8 @@ abstract class _RecipesInformation implements RecipesInformation {
   String get title;
   @override
   String get image;
+  @override
+  String get summary;
   @override
   int get readyInMinutes;
   @override

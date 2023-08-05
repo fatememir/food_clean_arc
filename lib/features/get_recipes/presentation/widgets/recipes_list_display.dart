@@ -28,7 +28,7 @@ class RecipesListDisplay extends StatelessWidget {
           itemBuilder: (BuildContext context, int index) {
             return InkWell(
               onTap: () {
-                context.go('/recipesDetail',
+                GoRouter.of(context).push('/recipesDetail',
                     extra: RecipesDetailScreenModel(
                         recipesInformation: recipesInformationList[index],
                         index: index));
@@ -49,11 +49,16 @@ class RecipesListDisplay extends StatelessWidget {
                     ),
                     _buildFoodTitle(index),
                     const Spacer(),
-                    const Padding(
-                      padding: EdgeInsets.all(8.0),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [WatchButtonWidget(), ReadyMinute()],
+                        children: [
+                          const WatchButtonWidget(),
+                          ReadyMinute(
+                              readyMinutes:
+                                  recipesInformationList[index].readyInMinutes)
+                        ],
                       ),
                     )
                   ],
